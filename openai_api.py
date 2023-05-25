@@ -1,7 +1,7 @@
 import openai
 import os
 
-openai.api_key = "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"
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def get_completion(prompt, model="gpt-3.5-turbo"):
     messages = [{"role": "user", "content": prompt}]
@@ -24,6 +24,7 @@ In many cases, longer prompts provide more clarity \
 and context for the model, which can lead to \ 
 more detailed and relevant outputs.
 """
+
 prompt = f"""
 Generate a list of three made-up book titles along \ 
 with their authors and genres. 
@@ -31,6 +32,6 @@ Provide them in JSON format with the following keys:
 book_id, title, author, genre.
 
 """
+
 response = get_completion(prompt)
 print(response)
-
